@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- <suite name="AllTestsSuite" verbose="1"> -->
+    <suite name="Annotation Execution Suite" parallel="methods" thread-count="2">
+        <test name="MyTestGroup">
+        <parameter name="program"  value="Bootcamp API Automation"/>
+            <classes>
+                 <class name="testng.TestNG" />
+            </classes>
+        </test>
+    </suite>
+<!-- </suite> -->
