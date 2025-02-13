@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="0.907" tests="16" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="testng.ParallelTestNG" time="0.788" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -10,14 +10,14 @@
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Asia/Jakarta"/>
-    <property name="suiteXmlFile" value="testng.xml"/>
     <property name="os.name" value="Windows 10"/>
     <property name="java.vm.specification.version" value="23"/>
-    <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ID"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Users\Rifky_118716\jdk-23.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\RIFKY_~1\AppData\Local\Temp\surefire1471163441808075965\surefirebooter14777086712718655589.jar C:\Users\Rifky_118716\AppData\Local\Temp\surefire1471163441808075965 2025-02-12T11-03-33_309-jvmRun1 surefire17137100359534592966tmp surefire_02797535012342270605tmp"/>
+    <property name="sun.java.command" value="C:\Users\RIFKY_~1\AppData\Local\Temp\surefire18440042073807975340\surefirebooter10388715699097815086.jar C:\Users\Rifky_118716\AppData\Local\Temp\surefire18440042073807975340 2025-02-12T09-52-58_123-jvmRun1 surefire8306812274510471248tmp surefire_02774205850371012226tmp"/>
     <property name="jdk.debug" value="release"/>
+    <property name="test" value="testng.ParallelTestNG#scenarioTestGroup1"/>
     <property name="surefire.test.class.path" value="C:\Users\Rifky_118716\Documents\Course QA Automation\Api Automation\apiautomation\target\test-classes;C:\Users\Rifky_118716\Documents\Course QA Automation\Api Automation\apiautomation\target\classes;C:\Users\Rifky_118716\.m2\repository\org\testng\testng\7.10.2\testng-7.10.2.jar;C:\Users\Rifky_118716\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Rifky_118716\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\Rifky_118716\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Rifky_118716"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\RIFKY_~1\AppData\Local\Temp\surefire1471163441808075965\surefirebooter14777086712718655589.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\RIFKY_~1\AppData\Local\Temp\surefire18440042073807975340\surefirebooter10388715699097815086.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.1+11-39"/>
@@ -42,6 +42,7 @@
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="C:\Users\Rifky_118716\.vscode\extensions\oracle.oracle-java-23.0.1\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\Rifky_118716\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\RIFKY_~1\AppData\Local\Temp\"/>
@@ -59,20 +60,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="getValueParam" classname="testng.ParallelTestNG" time="0.011"/>
-  <testcase name="scenarioTest1" classname="testng.ParallelTestNG" time="0.012"/>
-  <testcase name="scenarioTest2" classname="testng.ParallelTestNG" time="0.012"/>
-  <testcase name="scenarioTest3" classname="testng.ParallelTestNG" time="0.002"/>
-  <testcase name="scenarioTest4" classname="testng.ParallelTestNG" time="0.002"/>
-  <testcase name="scenarioTest5" classname="testng.ParallelTestNG" time="0.003"/>
-  <testcase name="scenarioTest6" classname="testng.ParallelTestNG" time="0.001"/>
-  <testcase name="scenarioTestGroup1" classname="testng.ParallelTestNG" time="0.003"/>
-  <testcase name="scenarioTestGroup2" classname="testng.ParallelTestNG" time="0.004"/>
-  <testcase name="scenarioTestGroupFuncast" classname="testng.ParallelTestNG" time="0.004"/>
-  <testcase name="scenarioTest1" classname="testng.TestNG" time="0.003"/>
-  <testcase name="scenarioTest2" classname="testng.TestNG" time="0.003"/>
-  <testcase name="scenarioTest3" classname="testng.TestNG" time="0.005"/>
-  <testcase name="getDataProvider" classname="testng.TestNG" time="0.008"/>
-  <testcase name="getDataProvider" classname="testng.TestNG" time="0"/>
-  <testcase name="getDataProvider" classname="testng.TestNG" time="0"/>
+  <testcase name="scenarioTestGroup1" classname="testng.ParallelTestNG" time="0.006"/>
 </testsuite>
