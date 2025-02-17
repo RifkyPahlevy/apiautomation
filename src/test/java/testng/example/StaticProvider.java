@@ -14,6 +14,7 @@ public class StaticProvider {
 
     }
 
+
     @DataProvider (name="dataProviderNegative")
     public Object [][] getDataNegative(){
 

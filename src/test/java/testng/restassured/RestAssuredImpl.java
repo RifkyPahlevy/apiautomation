@@ -32,7 +32,6 @@ public class RestAssuredImpl {
      * 
      */
 
-
     static void getListOfAllObject (){
         RestAssured.baseURI = "https://api.restful-api.dev";
 
