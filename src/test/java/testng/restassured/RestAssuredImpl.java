@@ -3,19 +3,20 @@ package testng.restassured;
 import com.sun.net.httpserver.Request;
 
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RestAssuredImpl {
 
     public static void main(String[] args) {
-       // getListOfAllObject();
+        getListOfAllObject();
        //getSingleObject();
        //listOfObjectsById(new String []{"1","4","5"});
-       //addObjects();
+      // addObjects();
        //updateObject();
        //partialUpdateObjects();
-       deleteObjects();
+       //deleteObjects();
 
         
     }
@@ -47,6 +48,12 @@ public class RestAssuredImpl {
                                 .get("objects");
 
         System.out.println("The Result Is :"+ response2.asPrettyString());
+
+
+        JsonPath jsonPath = response.jsonPath();
+
+        System.out.println("Data id 1 "+ jsonPath.get("id[1]"));
+        System.out.println("Product Name :"+ jsonPath.get("data[0].color"));
 
     }
 
@@ -106,7 +113,11 @@ public class RestAssuredImpl {
                                                 .when()
                                                 .post("{path}");
 
-        System.out.println("Result : "+ response.asPrettyString() );                                        
+        System.out.println("Result : "+ response.asPrettyString() );   
+        
+        JsonPath jsonPath = response.jsonPath();
+        
+        System.out.println("Id :"+ jsonPath.get("id"));
 
     }
 
