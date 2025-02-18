@@ -3,11 +3,11 @@
 <suite thread-count="1" name="Failed suite [Surefire suite]" verbose="0">
   <test thread-count="1" name="Surefire test(failed)" verbose="0">
     <classes>
-      <class name="testng.restassured.ValidationTest">
+      <class name="testng.submission.ScenarioE2E">
         <methods>
-          <include name="deleteObjects"/>
+          <include name="scenatioE2ETest"/>
         </methods>
-      </class> <!-- testng.restassured.ValidationTest -->
+      </class> <!-- testng.submission.ScenarioE2E -->
     </classes>
   </test> <!-- Surefire test(failed) -->
 </suite> <!-- Failed suite [Surefire suite] -->

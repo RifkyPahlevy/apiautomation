@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: testng.submission.ScenarioE2E
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.191 s - in testng.submission.ScenarioE2E

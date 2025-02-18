@@ -30,6 +30,9 @@ public class ResponseObject {
     @JsonProperty("message")
     public String message;
 
+    @JsonProperty("error")
+    public String error;
+
     @JsonProperty ("data")
     public DataItem dataItem;
 
