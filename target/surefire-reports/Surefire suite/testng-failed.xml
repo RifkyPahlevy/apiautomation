@@ -5,7 +5,7 @@
     <classes>
       <class name="testng.restassured.ValidationTest">
         <methods>
-          <include name="addObjects"/>
+          <include name="deleteObjects"/>
         </methods>
       </class> <!-- testng.restassured.ValidationTest -->
     </classes>
