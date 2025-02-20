@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="8.109" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-02-20T13:07:21.033765300Z">
-<testcase classname="add objects" name="user can add an objects to storage" time="5.937">
+<testsuite name="Cucumber" time="6.653" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-02-20T14:15:54.131128500Z">
+<testcase classname="add objects" name="user can add an objects to storage" time="4.842">
 <system-out><![CDATA[
 Given I check list of all objects...........................................passed
 When I add an object........................................................passed
 Then I check the new object was added.......................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="add objects" name="user can add some objects to storage - #1.1" time="1.115">
+<testcase classname="add objects" name="user can add some objects to storage - #1.1" time="0.793">
 <system-out><![CDATA[
 Given I check list of all objects...........................................passed
 When I add some "object1" to objects........................................passed
 Then I check the new object was added.......................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="add objects" name="user can add some objects to storage - #1.2" time="0.786">
+<testcase classname="add objects" name="user can add some objects to storage - #1.2" time="0.781">
 <system-out><![CDATA[
 Given I check list of all objects...........................................passed
 When I add some "object2" to objects........................................passed

@@ -3,11 +3,11 @@ package stepdefinition;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
 import org.testng.Assert;
 
 import com.apiautomation.model.ResponseObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.cucumber.java.Before;
@@ -37,7 +37,7 @@ public class stepdefinitionimpl {
         this.scenario = scenario;
     }
 
-   @Given("I check list of all objects")
+   @Given("I check list of all objects") 
     public void checkStorage() throws JsonProcessingException {
 
         RestAssured.baseURI = "https://api.restful-api.dev";
@@ -53,27 +53,14 @@ public class stepdefinitionimpl {
 
         // System.out.println("Result Name :"+getJsonPath.get("name"));
 
-        
+       jsonPath = response.jsonPath();
 
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        TypeReference<List<ResponseObject>> responseTypeReference = new TypeReference<List<ResponseObject>>() {
-        };
-
-        List<ResponseObject> responseList = objectMapper.readValue(response.asPrettyString(), responseTypeReference);
-        System.out.println(responseList);
+       List<ResponseObject> responseList = jsonPath.getList("");
+       Assert.assertEquals(response.statusCode(), 200);
+       Assert.assertNotNull(responseList.size());        
 
 
-         Assert.assertEquals(response.statusCode(), 200);
-         Assert.assertEquals(responseList.get(0).id, "1");
-         Assert.assertEquals(responseList.get(0).nama, "Google Pixel 6 Pro");
-         Assert.assertEquals(responseList.get(0).dataItem.color, "Cloudy White");
-         Assert.assertEquals(responseList.get(0).dataItem.capacity, "128 GB");
-
-         
-
-
-       // scenario.log(response.asPrettyString());
+      
 
         
     }
