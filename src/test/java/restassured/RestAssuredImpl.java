@@ -1,4 +1,4 @@
-package testng.restassured;
+package restassured;
 
 import com.sun.net.httpserver.Request;
 

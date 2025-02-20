@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="6.868" tests="3" skipped="0" failures="1" errors="0" timestamp="2025-02-20T09:53:48.941509400Z">
+<testcase classname="add objects" name="user can add an objects to storage" time="5.139">
+<failure/>
+<system-out><![CDATA[
+Given I check list objects are available in storage.........................passed
+When I add an object........................................................passed
+Then I see object was added.................................................undefined
+]]></system-out>
+</testcase>
+<testcase classname="add objects" name="user can add some objects to storage - #1.1" time="0.68">
+<system-out><![CDATA[
+Given I check list objects are available in storage.........................passed
+When I add "data1" to object................................................passed
+Then I see the object was added.............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="add objects" name="user can add some objects to storage - #1.2" time="0.617">
+<system-out><![CDATA[
+Given I check list objects are available in storage.........................passed
+When I add "data2" to object................................................passed
+Then I see the object was added.............................................passed
+]]></system-out>
+</testcase>
+</testsuite>

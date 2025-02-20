@@ -1,4 +1,4 @@
-package testng.restassured;
+package restassured;
 
 import java.util.List;
 
@@ -256,8 +256,5 @@ public class ValidationTest {
 
 
     }
-
-
-
 
 }

@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import testng.example.StaticProvider;
+import example.StaticProvider;
 
 public class ParallelTestNG {
 
