@@ -1,16 +1,16 @@
 Feature: add objects
 
   Scenario: user can add an objects to storage
-    Given I check list objects are available in storage
+    Given I check list of all objects
     When I add an object
-    Then I see object was added
+    Then I check the new object was added
 
   Scenario Outline: user can add some objects to storage
-    Given I check list objects are available in storage
-    When I add "<payload>" to object
-    Then I see the object was added
+    Given I check list of all objects
+    When I add some "<data>" to objects
+    Then I check the new object was added
 
     Examples:
-      | payload |
-      | data1   |
-      | data2   |
+      | data |
+      | object1   |
+      | object2   |

@@ -37,7 +37,7 @@ public class stepdefinitionimpl {
         this.scenario = scenario;
     }
 
-    @Given("I check list objects are available in storage")
+   @Given("I check list of all objects")
     public void checkStorage() throws JsonProcessingException {
 
         RestAssured.baseURI = "https://api.restful-api.dev";
@@ -52,19 +52,35 @@ public class stepdefinitionimpl {
         System.out.println("Result :" + response.asPrettyString());
 
         // System.out.println("Result Name :"+getJsonPath.get("name"));
+
+        
+
         ObjectMapper objectMapper = new ObjectMapper();
 
         TypeReference<List<ResponseObject>> responseTypeReference = new TypeReference<List<ResponseObject>>() {
         };
 
         List<ResponseObject> responseList = objectMapper.readValue(response.asPrettyString(), responseTypeReference);
+        System.out.println(responseList);
 
-        scenario.log(response.asPrettyString());
+
+         Assert.assertEquals(response.statusCode(), 200);
+         Assert.assertEquals(responseList.get(0).id, "1");
+         Assert.assertEquals(responseList.get(0).nama, "Google Pixel 6 Pro");
+         Assert.assertEquals(responseList.get(0).dataItem.color, "Cloudy White");
+         Assert.assertEquals(responseList.get(0).dataItem.capacity, "128 GB");
+
+         
+
+
+       // scenario.log(response.asPrettyString());
+
+        
     }
 
     @When("I add an object")
     public void userAddAnObject() {
-        String json = "{\r\n"
+        json = "{\r\n"
                 + //
                 "   \"name\": \"Laptop Jadoel\",\r\n"
                 + //
@@ -107,8 +123,8 @@ public class stepdefinitionimpl {
         scenario.log(response.asPrettyString());
     }
 
-    @When("I add {string} to object")
-    public void userAddAnObject(String payload) throws JsonProcessingException {
+    @When("I add some {string} to objects")
+    public void userAddAnObject(String data) throws JsonProcessingException {
         // String json = "{\r\n"
         //         + //
         //         "   \"name\": \"Laptop Jadoel\",\r\n"
@@ -130,7 +146,7 @@ public class stepdefinitionimpl {
         dataResource = new DataResource();
 
         for (Map.Entry<String, String> entry : dataResource.addObjectsCollections().entrySet()) {
-            if (entry.getKey().equals(payload)) {
+            if (entry.getKey().equals(data)) {
                 json = entry.getValue();
                 break;
             }
@@ -171,7 +187,7 @@ public class stepdefinitionimpl {
         System.out.println(response.asPrettyString());
     }
 
-    @Then("I see the object was added")
+    @Then("I check the new object was added")
     public void getNewData() throws JsonProcessingException {
 
         RestAssured.baseURI = "https://api.restful-api.dev";

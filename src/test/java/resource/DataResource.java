@@ -10,7 +10,7 @@ public class DataResource {
         Map <String, String> dataCollection = new HashMap<>();
 
 
-        dataCollection.put("data1", "{\r\n"
+        dataCollection.put("object1", "{\r\n"
                 + //
                 "   \"name\": \"Laptop JadoelQ Nih Yang Pertama\",\r\n"
                 + //
@@ -28,7 +28,7 @@ public class DataResource {
                 + //
                 "}");
 
-               dataCollection.put("data2", "{\r\n"
+               dataCollection.put("object2", "{\r\n"
                 + //
                 "   \"name\": \"Laptop JadoelQ Nih yang kedua\",\r\n"
                 + //
