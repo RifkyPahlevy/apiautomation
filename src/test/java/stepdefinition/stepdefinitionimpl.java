@@ -1,21 +1,19 @@
 package stepdefinition;
 
-import java.util.List;
 import java.util.Map;
-
-import org.junit.Test;
-import org.testng.Assert;
 
 import com.apiautomation.model.ResponseObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.cucumber.java.Before;
+import apiengine.Endpoints;
+import apiengine.ValidationTest;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import request.RequestObject;
@@ -30,39 +28,27 @@ public class stepdefinitionimpl {
     DataResource dataResource;
     String json;
     RequestObject requestObject;
+    Endpoints endpoints;
+    Response response;
+    ValidationTest validation;
 
-    @Before
+    @BeforeStep
     public void prinLog(Scenario scenario) {
 
+        endpoints = new Endpoints();
+        validation = new ValidationTest();
         this.scenario = scenario;
     }
 
-   @Given("I check list of all objects") 
+    @Given("I check list of all objects")
     public void checkStorage() throws JsonProcessingException {
 
-        RestAssured.baseURI = "https://api.restful-api.dev";
+        response = endpoints.getAllObject("objects");
 
-        Response response = RestAssured
-                .given()
-                .pathParam("path", "objects")
-                .log()
-                .all()
-                .get("{path}");
+        jsonPath = response.jsonPath();
 
-        System.out.println("Result :" + response.asPrettyString());
+        validation.validationObject(response);
 
-        // System.out.println("Result Name :"+getJsonPath.get("name"));
-
-       jsonPath = response.jsonPath();
-
-       List<ResponseObject> responseList = jsonPath.getList("");
-       Assert.assertEquals(response.statusCode(), 200);
-       Assert.assertNotNull(responseList.size());        
-
-
-      
-
-        
     }
 
     @When("I add an object")
@@ -85,26 +71,13 @@ public class stepdefinitionimpl {
                 + //
                 "}";
 
-        RestAssured.baseURI = "https://api.restful-api.dev";
-
-        Response response = RestAssured
-                .given()
-                .pathParam("path", "objects")
-                .contentType("application/json")
-                .body(json)
-                .when()
-                .post("{path}");
+        response = endpoints.addObject("objects", json);
 
         jsonPath = response.jsonPath();
 
         responseObject = jsonPath.getObject("", ResponseObject.class);
 
-        Assert.assertEquals(response.statusCode(), 200);
-        Assert.assertNotNull(responseObject.id, jsonPath.get("id"));
-        Assert.assertEquals(responseObject.dataItem.year, 2025);
-        Assert.assertEquals(responseObject.dataItem.price, 1849.99);
-        Assert.assertEquals(responseObject.dataItem.cpu, "Intel Ajah i9");
-        Assert.assertEquals(responseObject.dataItem.hardisk, "1 TB");
+       validation.validationSuccessAddObject(response, responseObject, jsonPath);
 
         id = responseObject.id;
         scenario.log(response.asPrettyString());
@@ -112,23 +85,6 @@ public class stepdefinitionimpl {
 
     @When("I add some {string} to objects")
     public void userAddAnObject(String data) throws JsonProcessingException {
-        // String json = "{\r\n"
-        //         + //
-        //         "   \"name\": \"Laptop Jadoel\",\r\n"
-        //         + //
-        //         "   \"data\": {\r\n"
-        //         + //
-        //         "      \"year\": 2025,\r\n"
-        //         + //
-        //         "      \"price\": 1849.99,\r\n"
-        //         + //
-        //         "      \"CPU model\": \"Intel Ajah i9\",\r\n"
-        //         + //
-        //         "      \"Hard disk size\": \"1 TB\"\r\n"
-        //         + //
-        //         "   }\r\n"
-        //         + //
-        //         "}";
 
         dataResource = new DataResource();
 
@@ -139,15 +95,7 @@ public class stepdefinitionimpl {
             }
         }
 
-        RestAssured.baseURI = "https://api.restful-api.dev";
-
-        Response response = RestAssured
-                .given()
-                .pathParam("path", "objects")
-                .contentType("application/json")
-                .body(json)
-                .when()
-                .post("{path}");
+        response = endpoints.addObject("objects", json);
 
         ObjectMapper objectMapper = new ObjectMapper();
         requestObject = objectMapper.readValue(json, RequestObject.class);
@@ -156,38 +104,17 @@ public class stepdefinitionimpl {
 
         responseObject = jsonPath.getObject("", ResponseObject.class);
 
-        // Assert.assertEquals(response.statusCode(), 200);
-        // Assert.assertNotNull(responseObject.id, jsonPath.get("id"));
-        // Assert.assertEquals(responseObject.dataItem.year, 2025);
-        // Assert.assertEquals(responseObject.dataItem.price, 1849.99);
-        // Assert.assertEquals(responseObject.dataItem.cpu, "Intel Ajah i9");
-        // Assert.assertEquals(responseObject.dataItem.hardisk, "1 TB");
-        Assert.assertEquals(response.statusCode(), 200);
-        Assert.assertNotNull(responseObject.id, jsonPath.get("id"));
-        Assert.assertEquals(responseObject.dataItem.year, requestObject.dataRequest.year);
-        Assert.assertEquals(responseObject.dataItem.price, requestObject.dataRequest.price);
-        Assert.assertEquals(responseObject.dataItem.cpu, requestObject.dataRequest.cpuModel);
-        Assert.assertEquals(responseObject.dataItem.hardisk, requestObject.dataRequest.hardiskSize);
+        validation.validationSuccessAddWithData(response, responseObject, requestObject, jsonPath);
 
         id = responseObject.id;
-        scenario.log(response.asPrettyString());
-        System.out.println(response.asPrettyString());
+        
     }
 
-    @Then("I check the new object was added")
+    @And("I check the new object was added")
     public void getNewData() throws JsonProcessingException {
 
-        RestAssured.baseURI = "https://api.restful-api.dev";
+        endpoints.getNewData("objects", id);
 
-        Response response = RestAssured
-                .given()
-                .log()
-                .all()
-                .pathParam("id", id)
-                .pathParam("path", "objects")
-                .get("{path}/{id}");
-
-        
         ObjectMapper requestMapper = new ObjectMapper();
 
         requestObject = requestMapper.readValue(json, RequestObject.class);
@@ -196,14 +123,24 @@ public class stepdefinitionimpl {
 
         responseObject = jsonPath.getObject("", ResponseObject.class);
 
-        Assert.assertEquals(response.statusCode(), 200);
-        Assert.assertEquals(responseObject.nama, requestObject.name);
-        Assert.assertEquals(responseObject.dataItem.year, requestObject.dataRequest.year);
-        Assert.assertEquals(responseObject.dataItem.price, requestObject.dataRequest.price);
-        Assert.assertEquals(responseObject.dataItem.cpu, requestObject.dataRequest.cpuModel);
-        Assert.assertEquals(responseObject.dataItem.hardisk, requestObject.dataRequest.hardiskSize);
+        validation.validationSuccessAddNewData(response, responseObject, requestObject, jsonPath);
 
         scenario.log(response.asPrettyString());
     }
+
+    @Then ("I delete an object")
+    public void deleteAnObject (){
+
+        
+        response = endpoints.deleteObject("objects",id);
+
+        JsonPath jsonPath = response.jsonPath();
+
+        validation.validatesuccessDeleteObject(response, jsonPath, id);
+
+      
+
+    }
+
 
 }

@@ -8,9 +8,10 @@ Feature: add objects
   Scenario Outline: user can add some objects to storage
     Given I check list of all objects
     When I add some "<data>" to objects
-    Then I check the new object was added
+    And I check the new object was added
+    Then I delete an object
 
     Examples:
-      | data |
-      | object1   |
-      | object2   |
+      | data    |
+      | object1 |
+      | object2 |
